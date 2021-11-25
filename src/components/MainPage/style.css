@@ -2,7 +2,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+<<<<<<< HEAD
   height: 80vh;
+=======
+>>>>>>> 8ca21624ae86d0308979e4f4b91c65a8e540f5a5
   overflow: hidden;
 }
 .logo {
