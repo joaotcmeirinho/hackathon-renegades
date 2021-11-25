@@ -8,7 +8,7 @@ function App() {
 
   const getRadioStations = () => {
     axios
-      .get("http://marxoft.co.uk/api/cuteradio/stations")
+      .get(`http://marxoft.co.uk/api/cuteradio/stations?country=Portugal`)
       .then((response) => response.data)
       .then((data) => {
         setRadioStations(data.items);
@@ -19,7 +19,20 @@ function App() {
     getRadioStations();
   }, []);
 
-  console.log(radioStations.map(item => item.country));
+
+  console.log(radioStations);
+
+  let countries = radioStations.map((radioStation) => {
+    return radioStation.country;
+  });
+
+  console.log(countries);
+
+  let genre = radioStations.map((radioStation) => {
+    return radioStation.genre;
+  });
+
+  console.log(genre);
 
 
   return (
