@@ -7,17 +7,17 @@ const RadioResults = () => {
         <>
         <div className="">
          <img className="driver-img" src={image} alt="" 
-         style={{ position: "absolute",
+         style={{  position: "absolute",
          width: "100%",
          left: "50%",
-         top:"100%",
-         height: "100vh",
-         objectFit: "cover",
-         transform: "translate(-50%, -50%)",
-         zIndex: "-1",
-         display:"flex",
+         top:"70vh",
+         height:"70vh", 
+         transform: "translate(-50%, -50%)", 
              }} />
-             <div><h2>hello</h2></div>
+             <div className="accordion">
+                 <h4>title</h4><hr style={{color:"black"}}/><h4>country</h4>
+                 
+                 </div>
              
         </div>
             

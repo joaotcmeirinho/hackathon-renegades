@@ -1,0 +1,10 @@
+.accordion {
+	position: absolute;
+	width: 26%;
+	left: 40%;
+	top: 73%;
+	background-color: #2d2618;
+	box-sizing: border-box;
+	text-align: center;
+	border-radius: 15px;
+}

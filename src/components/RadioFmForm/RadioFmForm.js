@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { RadioDisplay } from "../RadioDisplay/RadioDisplay";
+import RadioResults from "../RadioResults";
 
 export default function RadioFmForm() {
   const [countryRadioStations, setCountryRadioStations] = useState("");
@@ -67,7 +68,7 @@ export default function RadioFmForm() {
           </form>
         </div>
       ) : (
-        <div>hello</div>
+        <RadioResults />
       )}
     </>
   );
