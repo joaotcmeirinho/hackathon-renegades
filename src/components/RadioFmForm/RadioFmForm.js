@@ -11,7 +11,6 @@ export default function RadioFmForm() {
 
   const titles = radioStations.map((radioStation) => radioStation.title);
   const genre = radioStations.map((radioStation) => radioStation.genre);
-  console.log(genre);
 
   const getRadioStations = () => {
     axios
@@ -25,10 +24,16 @@ export default function RadioFmForm() {
       });
   };
 
+  const toggleDisplay = () => {
+    setRadioDisplay(!radioDisplay);
+  };
+
   useEffect(() => {
     getRadioStations();
-    if (radioStationGenre !== "") {
-      setRadioDisplay(true);
+    if (radioStationGenre === "") {
+      console.log("nonono");
+    } else {
+      toggleDisplay();
     }
   }, [countryRadioStations, radioStationGenre]);
 
@@ -42,7 +47,6 @@ export default function RadioFmForm() {
     setCountryRadioStations(data.Country);
     setRadioStationGenre(data.genre);
   };
-  console.log("hello");
 
   return (
     <>
@@ -67,7 +71,9 @@ export default function RadioFmForm() {
           </form>
         </div>
       ) : (
-        <div>hello</div>
+        <div>
+          <RadioDisplay toggleDisplay={toggleDisplay} />
+        </div>
       )}
     </>
   );
