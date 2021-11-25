@@ -1,47 +1,74 @@
-import { useForm } from 'react-hook-form';
+import { useForm } from "react-hook-form";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { RadioDisplay } from "../RadioDisplay/RadioDisplay";
 
 export default function RadioFmForm() {
+  const [countryRadioStations, setCountryRadioStations] = useState("");
+  const [radioStationGenre, setRadioStationGenre] = useState("");
+  const [radioStations, setRadioStations] = useState([]);
+  const [radioDisplay, setRadioDisplay] = useState(false);
 
-    const [countryRadioStations, setCountryRadioStations] = useState("");
-    const [radioStations, setRadioStations] = useState([]);
+  const titles = radioStations.map((radioStation) => radioStation.title);
+  const genre = radioStations.map((radioStation) => radioStation.genre);
+  console.log(genre);
 
-    const countryName = countryRadioStations.Country;
+  const getRadioStations = () => {
+    axios
+      .get(
+        `http://marxoft.co.uk/api/cuteradio/stations?country=${countryRadioStations}`
+      )
+      .then((response) => response.data)
+      .then((data) => {
+        setRadioStations(data.items);
+        console.log(data);
+      });
+  };
 
-    const titles = radioStations.map(radioStation => radioStation.title);
-    const genre = radioStations.map(radioStation => radioStation.genre)
-    console.log(genre);
+  useEffect(() => {
+    getRadioStations();
+    if (radioStationGenre !== "") {
+      setRadioDisplay(true);
+    }
+  }, [countryRadioStations, radioStationGenre]);
 
-    const getRadioStations = () => {
-      axios
-        .get(`http://marxoft.co.uk/api/cuteradio/stations?country=${countryName}`)
-        .then((response) => response.data)
-        .then((data) => {
-          setRadioStations(data.items);
-          console.log(data);
-        });
-    };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
- 
-    useEffect(() => {
-      getRadioStations();
-    }, [countryRadioStations]);
+  const onSubmit = (data) => {
+    setCountryRadioStations(data.Country);
+    setRadioStationGenre(data.genre);
+  };
+  console.log("hello");
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = country => setCountryRadioStations(country);
- 
-    return (
+  return (
+    <>
+      {!radioDisplay ? (
         <div>
-            <h1>form</h1>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <input type="text" placeholder="Country" {...register("Country", {})} />
-                <select {...register}>
-                    {genre.filter((item, index) => (genre.indexOf(item) === index)).map(g => ( <option value="t">{g}</option>))}
-                </select>
+          <h1>form</h1>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <input
+              type="text"
+              placeholder="Country"
+              {...register("Country", {})}
+            />
+            <select {...register("genre")}>
+              {genre
+                .filter((item, index) => genre.indexOf(item) === index)
+                .map((g) => (
+                  <option value={g}>{g}</option>
+                ))}
+            </select>
 
-                <input type="submit" />
-            </form>
+            <input type="submit" />
+          </form>
         </div>
-    );
+      ) : (
+        <div>hello</div>
+      )}
+    </>
+  );
 }
