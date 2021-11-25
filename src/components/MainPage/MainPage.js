@@ -3,6 +3,7 @@ import video from "../../assets/video/backgroundV.mp4";
 import Logo from "../../assets/video/LogoWhite.png";
 import "./style.css";
 import RadioFmForm from "../RadioFmForm/RadioFmForm";
+import RadioResults from "../RadioResults";
 
 const MainPage = () => {
   return (
@@ -22,7 +23,7 @@ const MainPage = () => {
             width: "100%",
             left: "50%",
             top: "50%",
-            height: "100%",
+            height: "100vh",
             objectFit: "cover",
             transform: "translate(-50%, -50%)",
             zIndex: "-1",
