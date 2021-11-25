@@ -1,12 +1,13 @@
 import { useForm } from "react-hook-form";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { RadioDisplay } from "../RadioDisplay/RadioDisplay";
 
 export default function RadioFmForm() {
   const [countryRadioStations, setCountryRadioStations] = useState("");
+  const [radioStationGenre, setRadioStationGenre] = useState("");
   const [radioStations, setRadioStations] = useState([]);
-
-  const countryName = countryRadioStations.Country;
+  const [radioDisplay, setRadioDisplay] = useState(false);
 
   const titles = radioStations.map((radioStation) => radioStation.title);
   const genre = radioStations.map((radioStation) => radioStation.genre);
@@ -14,7 +15,9 @@ export default function RadioFmForm() {
 
   const getRadioStations = () => {
     axios
-      .get(`http://marxoft.co.uk/api/cuteradio/stations?country=${countryName}`)
+      .get(
+        `http://marxoft.co.uk/api/cuteradio/stations?country=${countryRadioStations}`
+      )
       .then((response) => response.data)
       .then((data) => {
         setRadioStations(data.items);
@@ -24,30 +27,48 @@ export default function RadioFmForm() {
 
   useEffect(() => {
     getRadioStations();
-  }, [countryRadioStations]);
+    if (radioStationGenre !== "") {
+      setRadioDisplay(true);
+    }
+  }, [countryRadioStations, radioStationGenre]);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (country) => setCountryRadioStations(country);
+
+  const onSubmit = (data) => {
+    setCountryRadioStations(data.Country);
+    setRadioStationGenre(data.genre);
+  };
+  console.log("hello");
 
   return (
-    <div>
-      <h1 className="country">Where are you planning on going?</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input type="text" placeholder="Country" {...register("Country", {})} />
-        <select {...register}>
-          {genre
-            .filter((item, index) => genre.indexOf(item) === index)
-            .map((g) => (
-              <option value="t">{g}</option>
-            ))}
-        </select>
+    <>
+      {!radioDisplay ? (
+        <div>
+          <h1>form</h1>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <input
+              type="text"
+              placeholder="Country"
+              {...register("Country", {})}
+            />
+            <select {...register("genre")}>
+              {genre
+                .filter((item, index) => genre.indexOf(item) === index)
+                .map((g) => (
+                  <option value={g}>{g}</option>
+                ))}
+            </select>
 
-        <input type="submit" />
-      </form>
-    </div>
+            <input type="submit" />
+          </form>
+        </div>
+      ) : (
+        <div>hello</div>
+      )}
+    </>
   );
 }
