@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Form from "./components/RadioFmForm";
+
 
 function App() {
   const [radioStations, setRadioStations] = useState([]);
@@ -9,7 +11,7 @@ function App() {
       .get("http://marxoft.co.uk/api/cuteradio/stations")
       .then((response) => response.data)
       .then((data) => {
-        setRadioStations(data);
+        setRadioStations(data.items);
       });
   };
 
@@ -17,17 +19,13 @@ function App() {
     getRadioStations();
   }, []);
 
-  console.log(radioStations);
+  console.log(radioStations.map(item => item.country));
 
-  /*let countries = radioStations.map((radioStation) => {
-    return radioStation.country;
-  });
-
-  console.log(countries);*/
 
   return (
     <>
       <h1>Road Trip</h1>
+      <Form />
     </>
   );
 }
