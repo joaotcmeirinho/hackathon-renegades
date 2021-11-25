@@ -1,0 +1,35 @@
+.background-mp {
+  width: 100%;
+  display: flex;
+}
+
+.logo-space {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6%;
+  height: 100%;
+  overflow: hidden;
+}
+.logo {
+  display: flex;
+  width: 50%;
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 600px) {
+  .background-mp {
+    width: 100%;
+  }
+
+  .logo-space {
+    display: flex;
+    width: 100%;
+  }
+  .logo {
+    display: flex;
+    width: 80%;
+    overflow: hidden;
+  }
+}
