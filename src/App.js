@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Form from "./components/RadioFmForm";
+
 
 function App() {
   const [radioStations, setRadioStations] = useState([]);
@@ -17,6 +19,7 @@ function App() {
     getRadioStations();
   }, []);
 
+
   console.log(radioStations);
 
   let countries = radioStations.map((radioStation) => {
@@ -31,9 +34,11 @@ function App() {
 
   console.log(genre);
 
+
   return (
     <>
       <h1>Road Trip</h1>
+      <Form />
     </>
   );
 }
