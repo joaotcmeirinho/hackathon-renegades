@@ -6,7 +6,6 @@ import RadioResults from "../RadioResults";
 import "./style.css";
 import Logo1 from "../Logo";
 import Logo from "../../assets/video/LogoWhite.png";
-import { RadioDisplay } from "../RadioDisplay/RadioDisplay";
 import "./style.css";
 import videoForward from "../../assets/video/backgroundVforward.mp4";
 import video from "../../assets/video/backgroundV.mp4";
@@ -92,7 +91,7 @@ export default function RadioFmForm() {
                 <option value={g}>{g}</option>
               ))}
           </select>
-          <button className="submit-button" type="button">
+          <button className="submit-button" type="submit">
             TAKE ME TRIPPIN'
           </button>
         </form>
