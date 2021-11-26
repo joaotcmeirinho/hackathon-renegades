@@ -1,6 +1,3 @@
-import React from "react";
-
-
 export const RadioDisplay = ({ toggleDisplay }) => {
   return (
     <div>
@@ -14,3 +11,4 @@ export const RadioDisplay = ({ toggleDisplay }) => {
   );
 
 };
+
