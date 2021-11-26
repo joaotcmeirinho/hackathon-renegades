@@ -14,8 +14,27 @@
 	height: 20vh;
 	display: flex;
 }
+.radio-player {
+	display: flex;
+	justify-content: center;
+}
+.button-style {
+	position: absolute;
+	width: 10%;
+	left: 50%;
+	bottom: 3%;
+	text-align: center;
+	justify-content: center;
+	border-radius: 15px 15px 15px 0px;
+	background: #fa8e02;
+}
 @media only screen and (max-width: 600px) {
 	.driver-img {
 		overflow: hidden;
+	}
+	.button-style {
+		width: 55px;
+		max-width: 100%;
+		left: 48%;
 	}
 }

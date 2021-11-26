@@ -1,12 +1,11 @@
 import { useForm } from "react-hook-form";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Logo from "../../assets/video/LogoWhite.png";
 
 import RadioResults from "../RadioResults";
 import "./style.css";
-
-import { RadioDisplay } from "../RadioDisplay/RadioDisplay";
+import Logo1 from "../Logo";
+import Logo from "../../assets/video/LogoWhite.png";
 import "./style.css";
 import videoForward from "../../assets/video/backgroundVforward.mp4";
 import video from "../../assets/video/backgroundV.mp4";
@@ -55,9 +54,9 @@ export default function RadioFmForm() {
   } = useForm();
 
   const onSubmit = (data) => {
+    getRadioStations();
     setCountryRadioStations(data.Country);
     setRadioStationGenre(data.genre);
-    getRadioStations();
     if (radioStationGenre === "") {
       console.log("nonono");
     } else {
@@ -85,14 +84,16 @@ export default function RadioFmForm() {
             placeholder="Country"
             {...register("Country", {})}
           />
-          <select {...register("genre")}>
+          <select className="genres-select" {...register("genre")}>
             {genre
               .filter((item, index) => genre.indexOf(item) === index)
               .map((g) => (
                 <option value={g}>{g}</option>
               ))}
           </select>
-          <input type="submit" />
+          <button className="submit-button" type="submit">
+            TAKE ME TRIPPIN'
+          </button>
         </form>
       </div>
       <div className="background-mp">
@@ -108,13 +109,16 @@ export default function RadioFmForm() {
     </>
   ) : (
     <div>
-      <RadioResults fmCountry={fmCountry} fmCountryRadioStations={countryRadioStations} fmRadioStationGenre={radioStationGenre}/>
-      <RadioDisplay
+      <RadioResults
+        fmCountry={fmCountry}
+        fmCountryRadioStations={countryRadioStations}
+        fmRadioStationGenre={radioStationGenre}
         toggleDisplay={toggleDisplay}
         setCountryRadioStations={setCountryRadioStations}
         setRadioStationGenre={setRadioStationGenre}
         setRadioStations={setRadioStations}
       />
+
       <video className="background-video" autoPlay loop muted>
         <source src={videoForward} type="video/mp4" />
       </video>
