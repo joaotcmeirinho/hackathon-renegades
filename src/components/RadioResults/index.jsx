@@ -4,7 +4,7 @@ import "./style.css"
 import image from '../../assets/video/Dashboard.png'
 import { Accordion, Card } from 'react-bootstrap'
 
-const RadioResults = ({toggleDisplay}) => {
+const RadioResults = ({fmCountry, fmCountryRadioStations, fmRadioStationGenre}) => {
     return (
         <>
          
@@ -17,22 +17,20 @@ const RadioResults = ({toggleDisplay}) => {
          height:"70vh", 
          transform: "translate(-50%, -50%)", 
              }} />
+        <Accordion defaultActiveKey="0" flush>
+            <Accordion.Item eventKey="1">
             
-            <Accordion defaultActiveKey="0" flush>
-            <Accordion.Item eventKey="0">
+            
             <Accordion.Body as={Card.Body}>
-             <div className="">asdasdasdasd</div>
-             <div className="">asdasdasdasd</div>
-             <div className="">asdasdasdasd</div>
+                
+      <div className="div">{fmCountry.map((item)=>(<p>{item.title}</p>))}</div>
             </Accordion.Body>
-            <Accordion.Button centered>
-                <h4>title<hr/>country</h4>
-            </Accordion.Button>
+            <Accordion.Button centered><h4>{fmCountryRadioStations}<hr/>{fmRadioStationGenre}</h4></Accordion.Button>
         
             
             </Accordion.Item>
             </Accordion>
-            <button onClick={toggleDisplay} className="button-style">Back</button>
+            
         </div>
             
         </>

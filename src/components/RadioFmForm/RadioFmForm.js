@@ -1,17 +1,15 @@
 import { useForm } from "react-hook-form";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import Logo from "../../assets/video/LogoWhite.png";
 
 import RadioResults from "../RadioResults";
-import "./style.css"
-import Logo1 from "../Logo";
+import "./style.css";
 
 import { RadioDisplay } from "../RadioDisplay/RadioDisplay";
 import "./style.css";
 import videoForward from "../../assets/video/backgroundVforward.mp4";
 import video from "../../assets/video/backgroundV.mp4";
-
 
 export default function RadioFmForm() {
   const [countryRadioStations, setCountryRadioStations] = useState("");
@@ -22,14 +20,14 @@ export default function RadioFmForm() {
   const titles = radioStations.map((radioStation) => radioStation.title);
   const genre = radioStations.map((radioStation) => radioStation.genre);
 
-  
-  const fmCountry = radioStations.filter((station)=>{
-     return station.genre === radioStationGenre;
-  }).map((item) => item);
+  const fmCountry = radioStations
+    .filter((station) => {
+      return station.genre === radioStationGenre;
+    })
+    .map((item) => item);
 
   console.log("here here");
   console.log(fmCountry);
-
 
   const getRadioStations = () => {
     const CancelToken = axios.CancelToken;
@@ -50,15 +48,6 @@ export default function RadioFmForm() {
     setRadioDisplay(!radioDisplay);
   };
 
-  useEffect(() => {
-    getRadioStations();
-    if (radioStationGenre === "") {
-      console.log("nonono");
-    } else {
-      toggleDisplay();
-    }
-  }, [countryRadioStations, radioStationGenre]);
-
   const {
     register,
     handleSubmit,
@@ -68,15 +57,25 @@ export default function RadioFmForm() {
   const onSubmit = (data) => {
     setCountryRadioStations(data.Country);
     setRadioStationGenre(data.genre);
+    getRadioStations();
+    if (radioStationGenre === "") {
+      console.log("nonono");
+    } else {
+      toggleDisplay();
+    }
   };
+
+  /*useEffect(() => {
+    getRadioStations();
+    if (radioStationGenre === "") {
+      console.log("nonono");
+    } else {
+      toggleDisplay();
+    }
+  }, []);*/
 
   return !radioDisplay ? (
     <>
-      <div className="video-backwards">
-        <video className="background-video" autoPlay loop muted>
-          <source src={video} type="video/mp4" />
-        </video>
-      </div>
       <div className="blur-box"></div>
       <div className="form-handler">
         <form className="form-style" onSubmit={handleSubmit(onSubmit)}>
@@ -96,10 +95,26 @@ export default function RadioFmForm() {
           <input type="submit" />
         </form>
       </div>
+      <div className="background-mp">
+        <div className="video-backwards">
+          <video className="background-video" autoPlay loop muted>
+            <source src={video} type="video/mp4" />
+          </video>
+          <div className="logo-space">
+            <img className="logo" src={Logo} alt="Logo" />
+          </div>
+        </div>
+      </div>
     </>
   ) : (
     <div>
-      <RadioDisplay toggleDisplay={toggleDisplay} />
+      <RadioResults fmCountry={fmCountry} fmCountryRadioStations={countryRadioStations} fmRadioStationGenre={radioStationGenre}/>
+      <RadioDisplay
+        toggleDisplay={toggleDisplay}
+        setCountryRadioStations={setCountryRadioStations}
+        setRadioStationGenre={setRadioStationGenre}
+        setRadioStations={setRadioStations}
+      />
       <video className="background-video" autoPlay loop muted>
         <source src={videoForward} type="video/mp4" />
       </video>
