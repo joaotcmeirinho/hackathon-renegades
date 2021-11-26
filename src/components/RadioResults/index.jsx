@@ -2,12 +2,12 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import "./style.css"
 import image from '../../assets/video/Dashboard.png'
-import { Accordion } from 'react-bootstrap'
+import { Accordion, Card } from 'react-bootstrap'
 
-const RadioResults = ({toggleDisplay}) => {
+const RadioResults = ({fmCountry, fmCountryRadioStations, fmRadioStationGenre}) => {
     return (
         <>
-         <button onClick={toggleDisplay}>Back</button>
+         
         <div className="">
          <img className="driver-img" src={image} alt="" 
          style={{  position: "absolute",
@@ -19,16 +19,18 @@ const RadioResults = ({toggleDisplay}) => {
              }} />
         <Accordion defaultActiveKey="0" flush>
             <Accordion.Item eventKey="1">
-            <Accordion.Button centered><h4>title<hr/>country</h4></Accordion.Button>
             
-            <Accordion.Body>
-      <div className="div">hashdhashd</div>
-      <div className="div">hashdhashd</div>
-      <div className="div">hashdhashd</div>
+            
+            <Accordion.Body as={Card.Body}>
+                
+      <div className="div">{fmCountry.map((item)=>(<p>{item.title}</p>))}</div>
             </Accordion.Body>
+            <Accordion.Button centered><h4>{fmCountryRadioStations}<hr/>{fmRadioStationGenre}</h4></Accordion.Button>
+        
             
             </Accordion.Item>
             </Accordion>
+            
         </div>
             
         </>

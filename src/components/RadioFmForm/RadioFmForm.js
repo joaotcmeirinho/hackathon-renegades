@@ -5,7 +5,7 @@ import axios from "axios";
 import RadioResults from "../RadioResults";
 import "./style.css";
 import Logo1 from "../Logo";
-
+import Logo from "../../assets/video/LogoWhite.png";
 import { RadioDisplay } from "../RadioDisplay/RadioDisplay";
 import "./style.css";
 import videoForward from "../../assets/video/backgroundVforward.mp4";
@@ -76,11 +76,6 @@ export default function RadioFmForm() {
 
   return !radioDisplay ? (
     <>
-      <div className="video-backwards">
-        <video className="background-video" autoPlay loop muted>
-          <source src={video} type="video/mp4" />
-        </video>
-      </div>
       <div className="blur-box"></div>
       <div className="form-handler">
         <form className="form-style" onSubmit={handleSubmit(onSubmit)}>
@@ -100,9 +95,24 @@ export default function RadioFmForm() {
           <input type="submit" />
         </form>
       </div>
+      <div className="background-mp">
+        <div className="video-backwards">
+          <video className="background-video" autoPlay loop muted>
+            <source src={video} type="video/mp4" />
+          </video>
+          <div className="logo-space">
+            <img className="logo" src={Logo} alt="Logo" />
+          </div>
+        </div>
+      </div>
     </>
   ) : (
     <div>
+      <RadioResults
+        fmCountry={fmCountry}
+        fmCountryRadioStations={countryRadioStations}
+        fmRadioStationGenre={radioStationGenre}
+      />
       <RadioDisplay
         toggleDisplay={toggleDisplay}
         setCountryRadioStations={setCountryRadioStations}
