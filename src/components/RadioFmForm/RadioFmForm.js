@@ -105,6 +105,7 @@ export default function RadioFmForm() {
     </>
   ) : (
     <div>
+      <RadioResults fmCountry={fmCountry} fmCountryRadioStations={countryRadioStations} fmRadioStationGenre={radioStationGenre}/>
       <RadioDisplay
         toggleDisplay={toggleDisplay}
         setCountryRadioStations={setCountryRadioStations}
