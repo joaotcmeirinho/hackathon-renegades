@@ -6,7 +6,7 @@ import Logo from "../../assets/video/LogoWhite.png";
 import RadioResults from "../RadioResults";
 import "./style.css";
 
-import { RadioDisplay } from "../RadioDisplay/RadioDisplay";
+
 import "./style.css";
 import videoForward from "../../assets/video/backgroundVforward.mp4";
 import video from "../../assets/video/backgroundV.mp4";
@@ -108,13 +108,11 @@ export default function RadioFmForm() {
     </>
   ) : (
     <div>
-      <RadioResults fmCountry={fmCountry} fmCountryRadioStations={countryRadioStations} fmRadioStationGenre={radioStationGenre}/>
-      <RadioDisplay
-        toggleDisplay={toggleDisplay}
+      <RadioResults fmCountry={fmCountry} fmCountryRadioStations={countryRadioStations} fmRadioStationGenre={radioStationGenre} toggleDisplay={toggleDisplay}
         setCountryRadioStations={setCountryRadioStations}
         setRadioStationGenre={setRadioStationGenre}
-        setRadioStations={setRadioStations}
-      />
+        setRadioStations={setRadioStations} />
+
       <video className="background-video" autoPlay loop muted>
         <source src={videoForward} type="video/mp4" />
       </video>
