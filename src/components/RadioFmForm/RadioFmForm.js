@@ -85,14 +85,16 @@ export default function RadioFmForm() {
             placeholder="Country"
             {...register("Country", {})}
           />
-          <select {...register("genre")}>
+          <select className="genres-select" {...register("genre")}>
             {genre
               .filter((item, index) => genre.indexOf(item) === index)
               .map((g) => (
                 <option value={g}>{g}</option>
               ))}
           </select>
-          <input type="submit" />
+          <button className="submit-button" type="button">
+            TAKE ME TRIPPIN'
+          </button>
         </form>
       </div>
       <div className="background-mp">
@@ -112,13 +114,12 @@ export default function RadioFmForm() {
         fmCountry={fmCountry}
         fmCountryRadioStations={countryRadioStations}
         fmRadioStationGenre={radioStationGenre}
-      />
-      <RadioDisplay
         toggleDisplay={toggleDisplay}
         setCountryRadioStations={setCountryRadioStations}
         setRadioStationGenre={setRadioStationGenre}
         setRadioStations={setRadioStations}
       />
+
       <video className="background-video" autoPlay loop muted>
         <source src={videoForward} type="video/mp4" />
       </video>
