@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Logo from "../../assets/video/LogoWhite.png";
 
 import RadioResults from "../RadioResults";
 import "./style.css";
@@ -69,11 +70,6 @@ export default function RadioFmForm() {
 
   return !radioDisplay ? (
     <>
-      <div className="video-backwards">
-        <video className="background-video" autoPlay loop muted>
-          <source src={video} type="video/mp4" />
-        </video>
-      </div>
       <div className="blur-box"></div>
       <div className="form-handler">
         <form className="form-style" onSubmit={handleSubmit(onSubmit)}>
@@ -92,6 +88,16 @@ export default function RadioFmForm() {
           </select>
           <input type="submit" />
         </form>
+      </div>
+      <div className="background-mp">
+        <div className="video-backwards">
+          <video className="background-video" autoPlay loop muted>
+            <source src={video} type="video/mp4" />
+          </video>
+          <div className="logo-space">
+            <img className="logo" src={Logo} alt="Logo" />
+          </div>
+        </div>
       </div>
     </>
   ) : (
