@@ -15,14 +15,14 @@ export default function RadioFmForm() {
   const titles = radioStations.map((radioStation) => radioStation.title);
   const genre = radioStations.map((radioStation) => radioStation.genre);
 
-  
-  const fmCountry = radioStations.filter((station)=>{
-     return station.genre === radioStationGenre;
-  }).map((item) => item);
+  const fmCountry = radioStations
+    .filter((station) => {
+      return station.genre === radioStationGenre;
+    })
+    .map((item) => item);
 
   console.log("here here");
   console.log(fmCountry);
-
 
   const getRadioStations = () => {
     const CancelToken = axios.CancelToken;
@@ -43,15 +43,6 @@ export default function RadioFmForm() {
     setRadioDisplay(!radioDisplay);
   };
 
-  useEffect(() => {
-    getRadioStations();
-    if (radioStationGenre === "") {
-      console.log("nonono");
-    } else {
-      toggleDisplay();
-    }
-  }, [countryRadioStations, radioStationGenre]);
-
   const {
     register,
     handleSubmit,
@@ -61,7 +52,22 @@ export default function RadioFmForm() {
   const onSubmit = (data) => {
     setCountryRadioStations(data.Country);
     setRadioStationGenre(data.genre);
+    getRadioStations();
+    if (radioStationGenre === "") {
+      console.log("nonono");
+    } else {
+      toggleDisplay();
+    }
   };
+
+  /*useEffect(() => {
+    getRadioStations();
+    if (radioStationGenre === "") {
+      console.log("nonono");
+    } else {
+      toggleDisplay();
+    }
+  }, []);*/
 
   return !radioDisplay ? (
     <>
@@ -92,7 +98,12 @@ export default function RadioFmForm() {
     </>
   ) : (
     <div>
-      <RadioDisplay toggleDisplay={toggleDisplay} />
+      <RadioDisplay
+        toggleDisplay={toggleDisplay}
+        setCountryRadioStations={setCountryRadioStations}
+        setRadioStationGenre={setRadioStationGenre}
+        setRadioStations={setRadioStations}
+      />
       <video className="background-video" autoPlay loop muted>
         <source src={videoForward} type="video/mp4" />
       </video>
