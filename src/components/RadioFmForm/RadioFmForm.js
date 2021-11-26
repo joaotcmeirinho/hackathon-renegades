@@ -11,9 +11,18 @@ export default function RadioFmForm() {
 
   const titles = radioStations.map((radioStation) => radioStation.title);
   const genre = radioStations.map((radioStation) => radioStation.genre);
-  console.log(genre);
+  
+  const fmCountry = radioStations.filter((station)=>{
+     return station.genre === radioStationGenre;
+  }).map((item) => item);
+
+  console.log("here here");
+  console.log(fmCountry);
 
   const getRadioStations = () => {
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
+
     axios
       .get(
         `http://marxoft.co.uk/api/cuteradio/stations?country=${countryRadioStations}`
@@ -67,7 +76,9 @@ export default function RadioFmForm() {
           </form>
         </div>
       ) : (
-        <div>hello</div>
+        <div>hello
+          <RadioDisplay radioStations={radioStations}/>
+        </div>
       )}
     </>
   );
