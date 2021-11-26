@@ -2,6 +2,9 @@ import { useForm } from "react-hook-form";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { RadioDisplay } from "../RadioDisplay/RadioDisplay";
+import "./style.css";
+import videoForward from "../../assets/video/backgroundVforward.mp4";
+import video from "../../assets/video/backgroundV.mp4";
 
 export default function RadioFmForm() {
   const [countryRadioStations, setCountryRadioStations] = useState("");
@@ -11,6 +14,7 @@ export default function RadioFmForm() {
 
   const titles = radioStations.map((radioStation) => radioStation.title);
   const genre = radioStations.map((radioStation) => radioStation.genre);
+
   
   const fmCountry = radioStations.filter((station)=>{
      return station.genre === radioStationGenre;
@@ -18,6 +22,7 @@ export default function RadioFmForm() {
 
   console.log("here here");
   console.log(fmCountry);
+
 
   const getRadioStations = () => {
     const CancelToken = axios.CancelToken;
@@ -34,10 +39,16 @@ export default function RadioFmForm() {
       });
   };
 
+  const toggleDisplay = () => {
+    setRadioDisplay(!radioDisplay);
+  };
+
   useEffect(() => {
     getRadioStations();
-    if (radioStationGenre !== "") {
-      setRadioDisplay(true);
+    if (radioStationGenre === "") {
+      console.log("nonono");
+    } else {
+      toggleDisplay();
     }
   }, [countryRadioStations, radioStationGenre]);
 
@@ -51,35 +62,40 @@ export default function RadioFmForm() {
     setCountryRadioStations(data.Country);
     setRadioStationGenre(data.genre);
   };
-  console.log("hello");
 
-  return (
+  return !radioDisplay ? (
     <>
-      {!radioDisplay ? (
-        <div>
-          <h1>form</h1>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <input
-              type="text"
-              placeholder="Country"
-              {...register("Country", {})}
-            />
-            <select {...register("genre")}>
-              {genre
-                .filter((item, index) => genre.indexOf(item) === index)
-                .map((g) => (
-                  <option value={g}>{g}</option>
-                ))}
-            </select>
-
-            <input type="submit" />
-          </form>
-        </div>
-      ) : (
-        <div>hello
-          <RadioDisplay radioStations={radioStations}/>
-        </div>
-      )}
+      <div className="video-backwards">
+        <video className="background-video" autoPlay loop muted>
+          <source src={video} type="video/mp4" />
+        </video>
+      </div>
+      <div className="blur-box"></div>
+      <div className="form-handler">
+        <form className="form-style" onSubmit={handleSubmit(onSubmit)}>
+          <input
+            className="country-input"
+            type="text"
+            placeholder="Country"
+            {...register("Country", {})}
+          />
+          <select {...register("genre")}>
+            {genre
+              .filter((item, index) => genre.indexOf(item) === index)
+              .map((g) => (
+                <option value={g}>{g}</option>
+              ))}
+          </select>
+          <input type="submit" />
+        </form>
+      </div>
     </>
+  ) : (
+    <div>
+      <RadioDisplay toggleDisplay={toggleDisplay} />
+      <video className="background-video" autoPlay loop muted>
+        <source src={videoForward} type="video/mp4" />
+      </video>
+    </div>
   );
 }
