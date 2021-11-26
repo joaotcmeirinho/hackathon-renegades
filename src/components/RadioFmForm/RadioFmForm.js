@@ -28,7 +28,7 @@ export default function RadioFmForm() {
   console.log("here here");
   console.log(fmCountry);
 
-  const getRadioStations = () => {
+  const getRadioStations = (countryRadioStations) => {
     const CancelToken = axios.CancelToken;
     const source = CancelToken.source();
 
@@ -54,7 +54,7 @@ export default function RadioFmForm() {
   } = useForm();
 
   const onSubmit = (data) => {
-    getRadioStations();
+    getRadioStations(data.Country);
     setCountryRadioStations(data.Country);
     setRadioStationGenre(data.genre);
     if (radioStationGenre === "") {
@@ -64,15 +64,16 @@ export default function RadioFmForm() {
     }
   };
 
-  /*useEffect(() => {
+  /*
+  useEffect(() => {
     getRadioStations();
     if (radioStationGenre === "") {
       console.log("nonono");
     } else {
       toggleDisplay();
     }
-  }, []);*/
-
+  }, [countryRadioStations]);
+*/
   return !radioDisplay ? (
     <>
       <div className="blur-box"></div>
@@ -117,6 +118,9 @@ export default function RadioFmForm() {
         setCountryRadioStations={setCountryRadioStations}
         setRadioStationGenre={setRadioStationGenre}
         setRadioStations={setRadioStations}
+        radioStations={radioStations}
+        CountryRadioStations={countryRadioStations}
+        radioStationGenre={radioStationGenre}
       />
 
       <video className="background-video" autoPlay loop muted>
