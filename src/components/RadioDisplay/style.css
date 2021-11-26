@@ -1,4 +1,14 @@
 .radio-player {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
+}
+.button-style {
+	position: absolute;
+	width: 6vw;
+	left: 51%;
+	bottom: 4%;
+	text-align: center;
+	box-sizing: content-box;
+	border-radius: 15px 15px 15px 0px;
+	background: red;
 }

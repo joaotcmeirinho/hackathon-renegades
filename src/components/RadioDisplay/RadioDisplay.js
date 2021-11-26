@@ -1,4 +1,5 @@
 import React from "react";
+import './style.css'
 
 
 export const RadioDisplay = ({
@@ -19,7 +20,7 @@ export const RadioDisplay = ({
     <div className="radio-player">
       <div>
 
-        <h4>Enjoy your station</h4>
+        <h4 className="radio-player">Enjoy your station</h4>
         <div>
           <audio
             src="https://radio-stream-1.obozrevatel.com/radioec128.mp3"
@@ -30,8 +31,9 @@ export const RadioDisplay = ({
             radio
           </audio>
         </div>
-        <button onClick={toggleDisplay}>Return</button>
-
+        
+        <button onClick={toggleDisplay} className="button-style">Return</button>
+        
       </div>
     </div>
   );

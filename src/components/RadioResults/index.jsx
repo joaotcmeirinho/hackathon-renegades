@@ -11,7 +11,7 @@ const RadioResults = ({fmCountry, fmCountryRadioStations, fmRadioStationGenre}) 
         <div className="">
          <img className="driver-img" src={image} alt="" 
          style={{  position: "absolute",
-         width: "100%",
+         width: "100vw",
          left: "50%",
          top:"70vh",
          height:"70vh", 
@@ -25,7 +25,9 @@ const RadioResults = ({fmCountry, fmCountryRadioStations, fmRadioStationGenre}) 
                 
       <div className="div">{fmCountry.map((item)=>(<p>{item.title}</p>))}</div>
             </Accordion.Body>
-            <Accordion.Button centered><h4>{fmCountryRadioStations}<hr/>{fmRadioStationGenre}</h4></Accordion.Button>
+            <Accordion.Button centered>
+                <h4>{fmCountryRadioStations}<hr/>{fmRadioStationGenre}</h4>
+                </Accordion.Button>
         
             
             </Accordion.Item>
