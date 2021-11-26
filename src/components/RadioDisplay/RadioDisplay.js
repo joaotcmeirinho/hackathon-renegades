@@ -1,9 +1,24 @@
 import React from "react";
 
-export const RadioDisplay = ({ toggleDisplay }) => {
+
+export const RadioDisplay = ({
+  toggleDisplay,
+  setCountryRadioStations,
+  setRadioStationGenre,
+  setRadioStations,
+}) => {
+  const clearAll = () => {
+    toggleDisplay();
+    setRadioStations([]);
+    setCountryRadioStations("");
+    setRadioStations("");
+  };
+
+
   return (
     <div className="radio-player">
       <div>
+
         <h4>Enjoy your station</h4>
         <div>
           <audio
@@ -16,6 +31,7 @@ export const RadioDisplay = ({ toggleDisplay }) => {
           </audio>
         </div>
         <button onClick={toggleDisplay}>Return</button>
+
       </div>
     </div>
   );
