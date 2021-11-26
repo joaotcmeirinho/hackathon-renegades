@@ -2,16 +2,14 @@ import { useForm } from "react-hook-form";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-
 import RadioResults from "../RadioResults";
-import "./style.css"
+import "./style.css";
 import Logo1 from "../Logo";
 
 import { RadioDisplay } from "../RadioDisplay/RadioDisplay";
 import "./style.css";
 import videoForward from "../../assets/video/backgroundVforward.mp4";
 import video from "../../assets/video/backgroundV.mp4";
-
 
 export default function RadioFmForm() {
   const [countryRadioStations, setCountryRadioStations] = useState("");
@@ -57,9 +55,9 @@ export default function RadioFmForm() {
   } = useForm();
 
   const onSubmit = (data) => {
+    getRadioStations();
     setCountryRadioStations(data.Country);
     setRadioStationGenre(data.genre);
-    getRadioStations();
     if (radioStationGenre === "") {
       console.log("nonono");
     } else {
