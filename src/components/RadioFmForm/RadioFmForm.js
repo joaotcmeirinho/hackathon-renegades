@@ -2,16 +2,13 @@ import { useForm } from "react-hook-form";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-
 import RadioResults from "../RadioResults";
-import "./style.css"
-import Logo1 from "../Logo";
+import "./style.css";
 
 import { RadioDisplay } from "../RadioDisplay/RadioDisplay";
 import "./style.css";
 import videoForward from "../../assets/video/backgroundVforward.mp4";
 import video from "../../assets/video/backgroundV.mp4";
-
 
 export default function RadioFmForm() {
   const [countryRadioStations, setCountryRadioStations] = useState("");
@@ -22,14 +19,14 @@ export default function RadioFmForm() {
   const titles = radioStations.map((radioStation) => radioStation.title);
   const genre = radioStations.map((radioStation) => radioStation.genre);
 
-  
-  const fmCountry = radioStations.filter((station)=>{
-     return station.genre === radioStationGenre;
-  }).map((item) => item);
+  const fmCountry = radioStations
+    .filter((station) => {
+      return station.genre === radioStationGenre;
+    })
+    .map((item) => item);
 
   console.log("here here");
   console.log(fmCountry);
-
 
   const getRadioStations = () => {
     const CancelToken = axios.CancelToken;
