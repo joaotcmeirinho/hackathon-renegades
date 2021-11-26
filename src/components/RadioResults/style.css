@@ -1,0 +1,25 @@
+.accordion {
+	position: absolute;
+	width: 28%;
+	left: 40%;
+	bottom: 9%;
+	text-align: center;
+	box-shadow: 0px 0px 17px 6px rgb(0 0 0 / 86%);
+	justify-content: center;
+}
+.accordion-button {
+	background-color: #020601 !important;
+	color: white;
+	justify-content: center;
+	height: 20vh;
+	display: flex;
+}
+.button-style {
+	position: absolute;
+	width: 28%;
+	left: 40%;
+	bottom: 4%;
+	text-align: center;
+	box-shadow: 0px 0px 17px 6px rgb(0 0 0 / 86%);
+	justify-content: center;
+}

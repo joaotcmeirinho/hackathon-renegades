@@ -1,13 +1,11 @@
 import React from "react";
-import Form from "./components/RadioFmForm";
+import MainPage from "./components/MainPage/MainPage";
 
 
 function App() {
- 
   return (
     <>
-      <h1>Road Trip</h1>
-      <Form />
+      <MainPage />
     </>
   );
 }

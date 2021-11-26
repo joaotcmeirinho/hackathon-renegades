@@ -12,7 +12,9 @@
   left: 12%;
 }
 
-.form-handler{
+
+.form-handler {
+
   display: flex;
   width: 75vw;
   height: 100px;  
@@ -21,7 +23,9 @@
   margin: auto;
 }
 
-.form-style{
+
+.form-style {
+
   position: absolute;
   display: flex;
   flex-direction: row;
@@ -29,26 +33,19 @@
   text-align: center;
 }
 
-.country-input{
+
+
+.country-input {
+
   display: flex;
   align-items: center;
   margin:2%;
   background: #fffbfb;
   border-radius: 15px 15px 15px 0px;
 
-  /*
-  
-	color: #fff;
-	height: 30px;
-	width: 30px;
-	display: inline-block;
-	font-size: 0.8em;
-	margin-right: 4px;
-	line-height: 30px;
-	text-align: center;
-	text-shadow: 0 1px 0 rgba(255,255,255,0.2);
-	border-radius: 15px 15px 15px 0px;
-  */
+  width: 40vw;
+  height: 202h;
+
 }
 
 .genres-select{
@@ -62,32 +59,71 @@
 
 .submit-button{
   border-radius: 15px 15px 15px 0px;
+  background: #fa8e02;
 }
 
+.logo-space {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  overflow: hidden;
+}
+.logo {
+  display: flex;
+  width: 100vh;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+}
+
+.background-video {
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
 
 @media only screen and (max-width: 600px) {
-	
-	.form-style{
-      position: absolute;
-      display: flex;
-      flex-direction: column;
-      top: 5vh;
-      text-align: center;
-	}
-
-  .blur-box {
-    height: 25vh;
-    width: 75vw;
-    opacity: 0.8;
-    background-image: linear-gradient(to right top, linear-gradient(to right top, #141516, #7e7e7e, #bfb898, #b5ae8e, #787878));
-    box-shadow: 0px 10px 13px -7px #000000, 0px 6px 7px 5px rgba(0,0,0,0.31);
-    border-radius: 2px;
-    box-shadow: inset 0 0 0 200px rgba(255,255,255,0.05);
-    background-color: #d8ccb6;
-    filter: blur(10px);
-    position: absolute;
-    left: 12%;
+  .background-mp {
+    width: 100%;
   }
 
+  .logo-space {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    height: 80vh;
+  }
+  .logo {
+    width: 100%;
+  }
+
+  .form-style{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 5vh;
+    text-align: center;
+}
+
+.blur-box {
+  height: 25vh;
+  width: 75vw;
+  opacity: 0.8;
+  background-image: linear-gradient(to right top, linear-gradient(to right top, #141516, #7e7e7e, #bfb898, #b5ae8e, #787878));
+  box-shadow: 0px 10px 13px -7px #000000, 0px 6px 7px 5px rgba(0,0,0,0.31);
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 200px rgba(255,255,255,0.05);
+  background-color: #d8ccb6;
+  filter: blur(10px);
+  position: absolute;
+  left: 12%;
+}
 }
 
