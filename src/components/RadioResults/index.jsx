@@ -22,22 +22,19 @@ const RadioResults = ({
     <>
       <div className="radio-player">
         <div>
-          <h4>Enjoy your station</h4>
-
-          <button onClick={toggleDisplay}>Return</button>
+          <h4 className="radio-player">Enjoy your station</h4>
+          <audio
+            /* src={"https://radio-stream-1.obozrevatel.com/radioec128.mp3"} */
+            src={selectRadio}
+            controls
+            autoplay
+            type="audio/m3u"
+          >
+            radio
+          </audio>
         </div>
       </div>
-      <div>
-        <audio
-          /* src={"https://radio-stream-1.obozrevatel.com/radioec128.mp3"} */
-          src={selectRadio}
-          controls
-          autoplay
-          type="audio/m3u"
-        >
-          radio
-        </audio>
-      </div>
+      <div></div>
 
       <div className="">
         <img
@@ -74,6 +71,9 @@ const RadioResults = ({
           </Accordion.Item>
         </Accordion>
       </div>
+      <button onClick={toggleDisplay} className="button-style">
+        Return
+      </button>
     </>
   );
 };

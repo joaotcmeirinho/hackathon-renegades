@@ -3,12 +3,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import RadioResults from "../RadioResults";
+
 import "./style.css";
 import Logo1 from "../Logo";
 import Logo from "../../assets/video/LogoWhite.png";
 import "./style.css";
 import videoForward from "../../assets/video/backgroundVforward.mp4";
 import video from "../../assets/video/backgroundV.mp4";
+
 
 export default function RadioFmForm() {
   const [countryRadioStations, setCountryRadioStations] = useState("");
@@ -18,6 +20,7 @@ export default function RadioFmForm() {
 
   const titles = radioStations.map((radioStation) => radioStation.title);
   const genre = radioStations.map((radioStation) => radioStation.genre);
+
 
   const fmCountry = radioStations
     .filter((station) => {
@@ -46,6 +49,16 @@ export default function RadioFmForm() {
   const toggleDisplay = () => {
     setRadioDisplay(!radioDisplay);
   };
+/*
+  useEffect(() => {
+    getRadioStations();
+    if (radioStationGenre === "") {
+      console.log("nonono");
+    } else {
+      toggleDisplay();
+    }
+  }, [countryRadioStations, radioStationGenre]); */
+
 
   const {
     register,
