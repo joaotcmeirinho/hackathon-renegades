@@ -17,12 +17,16 @@ const RadioResults = ({toggleDisplay}) => {
          height:"70vh", 
          transform: "translate(-50%, -50%)", 
              }} />
-        <Accordion flush>
-            <Accordion.Item >
+        <Accordion defaultActiveKey="0" flush>
+            <Accordion.Item eventKey="1">
             <Accordion.Button centered><h4>title<hr/>country</h4></Accordion.Button>
+            
             <Accordion.Body>
-      asdasdasdasdasdasdasdasdasdasdasd
+      <div className="div">hashdhashd</div>
+      <div className="div">hashdhashd</div>
+      <div className="div">hashdhashd</div>
             </Accordion.Body>
+            
             </Accordion.Item>
             </Accordion>
         </div>

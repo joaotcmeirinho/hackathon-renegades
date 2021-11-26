@@ -4,6 +4,7 @@ import axios from "axios";
 
 import RadioResults from "../RadioResults";
 import "./style.css"
+import Logo1 from "../Logo";
 
 export default function RadioFmForm() {
   const [countryRadioStations, setCountryRadioStations] = useState("");
@@ -68,6 +69,7 @@ export default function RadioFmForm() {
             <input type="submit" />
           </form>
                 </div>
+                <Logo1 />
          
         </>
       ) : (
