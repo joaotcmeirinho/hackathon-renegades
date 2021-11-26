@@ -1,8 +1,9 @@
 import { useForm } from "react-hook-form";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { RadioDisplay } from "../RadioDisplay/RadioDisplay";
+
 import RadioResults from "../RadioResults";
+import "./style.css"
 
 export default function RadioFmForm() {
   const [countryRadioStations, setCountryRadioStations] = useState("");
@@ -12,7 +13,6 @@ export default function RadioFmForm() {
 
   const titles = radioStations.map((radioStation) => radioStation.title);
   const genre = radioStations.map((radioStation) => radioStation.genre);
-  console.log(genre);
 
   const getRadioStations = () => {
     axios
@@ -26,10 +26,16 @@ export default function RadioFmForm() {
       });
   };
 
+  const toggleDisplay = () => {
+    setRadioDisplay(!radioDisplay);
+  };
+
   useEffect(() => {
     getRadioStations();
-    if (radioStationGenre !== "") {
-      setRadioDisplay(true);
+    if (radioStationGenre === "") {
+      console.log("nonono");
+    } else {
+      toggleDisplay();
     }
   }, [countryRadioStations, radioStationGenre]);
 
@@ -43,33 +49,31 @@ export default function RadioFmForm() {
     setCountryRadioStations(data.Country);
     setRadioStationGenre(data.genre);
   };
-  console.log("hello");
 
-  return (
+  return !radioDisplay ? (
     <>
-      {!radioDisplay ? (
-        <div>
-          <h1>form</h1>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <input
+          <div className="blur-box"></div>
+        <div className="form-handler">
+          <form className="form-style" onSubmit={handleSubmit(onSubmit)}>
+            <input className="country-input"
               type="text"
               placeholder="Country"
               {...register("Country", {})}
-            />
+              />
             <select {...register("genre")}>
               {genre
                 .filter((item, index) => genre.indexOf(item) === index)
-                .map((g) => (
-                  <option value={g}>{g}</option>
-                ))}
+                .map((g) => <option value={g}>{g}</option>)}
             </select>
-
             <input type="submit" />
           </form>
-        </div>
+                </div>
+         
+        </>
       ) : (
-        <RadioResults />
+        <div>     
+          <RadioResults toggleDisplay={toggleDisplay} />
+        </div>
+      
       )}
-    </>
-  );
-}
+

@@ -1,34 +1,43 @@
-.background-mp {
-  width: 100%;
-  display: flex;
-}
-
 .logo-space {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 80vh;
+	overflow: hidden;
 }
 .logo {
-  display: flex;
-  width: 50%;
-  overflow: hidden;
+	display: flex;
+	width: 100vh;
+	overflow: hidden;
+	justify-content: center;
+	align-items: center;
+}
+
+.background-video {
+	animation: fade-in 2s;
+	position: absolute;
+	width: 100%;
+	left: 50%;
+	top: 50%;
+	height: 100%;
+	object-fit: cover;
+	transform: translate(-50%, -50%);
+	z-index: -1;
 }
 
 @media only screen and (max-width: 600px) {
-  .background-mp {
-    width: 100%;
-  }
+	.background-mp {
+		width: 100%;
+	}
 
-  .logo-space {
-    display: flex;
-    width: 100%;
-  }
-  .logo {
-    display: flex;
-    width: 80%;
-    overflow: hidden;
-  }
+	.logo-space {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: flex-end;
+		height: 80vh;
+	}
+	.logo {
+		width: 100%;
+	}
 }

@@ -1,10 +1,13 @@
 import React from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import "./style.css"
 import image from '../../assets/video/Dashboard.png'
+import { Accordion } from 'react-bootstrap'
 
-const RadioResults = () => {
+const RadioResults = ({toggleDisplay}) => {
     return (
         <>
+         <button onClick={toggleDisplay}>Back</button>
         <div className="">
          <img className="driver-img" src={image} alt="" 
          style={{  position: "absolute",
@@ -14,11 +17,14 @@ const RadioResults = () => {
          height:"70vh", 
          transform: "translate(-50%, -50%)", 
              }} />
-             <div className="accordion">
-                 <h4>title</h4><hr style={{color:"black"}}/><h4>country</h4>
-                 
-                 </div>
-             
+        <Accordion flush>
+            <Accordion.Item >
+            <Accordion.Button centered><h4>title<hr/>country</h4></Accordion.Button>
+            <Accordion.Body>
+      asdasdasdasdasdasdasdasdasdasdasd
+            </Accordion.Body>
+            </Accordion.Item>
+            </Accordion>
         </div>
             
         </>
